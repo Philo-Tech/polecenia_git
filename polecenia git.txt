@@ -77,4 +77,47 @@ git reset --hard 9da1                           - cofniecie projektu do konkretn
 git reflog + git reset --hard 9730              - pokazuje historię zmian wskaźnika HEAD, czyli co się wydarzyło i dzięki temu możemy odzyskać SHA, żeby cofnąć reset hard
 
 git revert SHA                                  - odwrócenie commita i utworzenie nowego. Do stosowania w zdalnym repozytorium 
+----------------------------------------------------
+
+.GITIGNORE
+
+ 
+git check-ignore debug.log                     - sprawdzenie czy dany plik jest ignorowany
+ 
+git add -f debug.log                           - dodanie pliku do stage, nawet jak jest ignorowany. Flaga -> "-f"
+
+
+git-update-index --assume-unchanged <ścieżka>   -zmodyfikowaliśmy plik już dodany do repozytorium, ale nie chcemy tych zmian wysyłać. 
+						Nie chcemy też, aby żadne raporty czy listy pokazywały nam te zmiany.Na przykład umieściliśmy w kodzie nasz login i hasło
+
+
+
+git-update-index --no-assume-unchanged <ścieżka> - wyłączenie powyższego
+
+
+
+git status --ignored                           - lista ignorowanych plików
+
+
+
+https://pl.joecomp.com/ignoring-files-directories-git#menu-1      -> dobra strona o gitignore
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
