@@ -1,0 +1,80 @@
+git stash                     			- zapisanie zmian na stosie
+git stash pop               			  - sciagniecie zmian ze stosu(np po przejsciu na inny branch)  
+
+git stash push -m"jakas zmiana"			-zapisanie na stosie z opisem
+
+git stash list                                  - pokazuje liste zmian na stosie
+
+
+ git stash push -m"dodanie pliku" -u            - dodanie na stos nieśledzobego pliku ("-u")
+
+git stash apply                                 - przywrócenie zmian do katalogu roboczego (również zostają na stosie)
+git stash pop                                   - ściągniecię ze stosu i przywrócenie do kat roboczego(nie zostają na stosie)
+ git stash pop stash@{1}                        - przywrócenie konkretnych zmian (bez tego przywracane są ostatnie zmiany ze stosu)
+
+git stash clear                                  - czyszczenie całego stosu
+git stash drop stash@{0}			- usuniecie konkretnego ze stosu
+
+ git stash branch nowy_dla_stosu		- utworzenie brancha z dodaniem zmian ze stosu
+
+
+git log --graph --decorate --all --oneline      -pokazuje wykres
+
+ git branch -D develop                          -usuniecie gałęzi
+
+--------------------------------------------------
+ZDALNE REPOZYTORIUM
+
+
+echo "#Remote repository demo" >> README.md      - utworznie pliku README
+
+git remote add origin https://github.com/Philo-Tech/remote-repository.git   - dodanie zdalnego repozytorium
+git push -u origin master						    -wypchniecie na zdalne repozytorium
+
+git fetch					- pobranie zmian ze zdalnego repozytorium
+
+git merge origin/master				- lokalizacja lokalnego repozytorium o zmiany na zdalnym
+
+------------------------------------------------------
+CONFLICT
+
+git add new.txt                                -zachowanie pliku z konfliktu
+git rm -rf(?) new.txt                                 -usuniecie pliku z konfliktu
+
+git merge --no-ff                              - w momencie połaczenia tworzony jest nowy commit-> flaga "--no-ff"
+
+--------------------------------------------------------
+REBASE
+
+-trzeba byc na galezi develop/feature (czyli wykonujemy w stosunku do gałęzi master)
+
+git rebase master                              - rebase wykonany na gałęzi master z innej gałęzi
+git merge feature                              - w tym kontekście przesunie wskaźnik "head/master" na SHA, który wskazuje gałąź "feature"
+
+-----------------------------------------------------
+TAG
+
+git tag v1.0 -a -m"opis wersji"			- utworzenie tag-u do bierzącej wersji projektu | "-a" jaki autor | "-m" opis taga
+git tag v1.0 d45h -a -m"opis wersji"		- utworzenie tagu do konkretnej wersji->wykorzystując jego SHA-> "d45h"
+
+
+git tag show v1.0
+git tag -d v1.0
+
+git push --tags 				-wysłanie wszystkich tagów->tagi, podobnie jak commity, musimy wysłać do zdalnego repozytorium
+git push origin v1.0                            -wysłanie jednego/ konkretnego tagu
+git push origin -d v1.0                         -usunięcie konkretnego tagu ze zdalnego repozytorium
+
+----------------------------------------------------------
+COFANIE ZMIAN/ COMMITA
+
+git commit --amend -m"nowy komentarz"		-zmiana komentarza do ostatniego commit'a/ aktualizacja komentarza
+git reset 9da1                                  - cofniecie projektu do konkretnego commitu (nie usunie plików; zmiany z późniejszych/ usuniętych 
+						commitów znajdą się w katalogu roboczym więc można zmienić i znowu dodać)
+
+git reset --hard 9da1                           - cofniecie projektu do konkretnego commitu z usunięciem plików     
+
+git reflog + git reset --hard 9730              - pokazuje historię zmian wskaźnika HEAD, czyli co się wydarzyło i dzięki temu możemy odzyskać SHA, żeby cofnąć reset hard
+
+git revert SHA                                  - odwrócenie commita i utworzenie nowego. Do stosowania w zdalnym repozytorium 
+
